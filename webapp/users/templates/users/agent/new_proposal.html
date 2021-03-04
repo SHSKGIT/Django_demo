@@ -1,0 +1,54 @@
+{% extends 'users/header.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+<form id="regForm" method="POST"> 
+
+        <h1>Let's make a proposal for your client</h1>
+        
+        <!-- One "tab" for each step in the form: -->
+        <div class="tab">
+              {% csrf_token %}
+              {{ form.subject|as_crispy_field }}
+        </div>
+
+        <div class="tab">
+            {{ form.note|as_crispy_field }} 
+            
+        </div>
+        
+        <div class="tab">
+            <div class="form-group">
+                {{ form.services.label_tag }} <br>
+                {% for pk, choice in form.services.field.widget.choices %}
+                <div class="custom-control custom-checkbox">
+                    <input id="id_{{form.services.name}}_{{ forloop.counter0 }}" name="{{form.services.name}}" type="{{form.services.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                    
+                    <label for="id_{{form.services.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="tab">
+            {{ form.fee|as_crispy_field }}
+        </div>
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+            <a href={% url 'users:dashboard' %} class="btn btn-default">Cancel</a>
+          </div>
+        </div>
+        
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+        
+        </form>
+      </div>
+{% endblock %}

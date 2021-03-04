@@ -1,0 +1,47 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+    <h3>MY POSTINGS</h3>
+</div>
+<div class="container">
+        {% if buying or selling %}
+        <table class="table table-striped">
+            <tbody>
+                {% for t in buying %}
+                <tr>
+                    <td><div class="container-fluid no-padding">{% include 'users/includes/buying_card.html' %}</div></td>
+                </tr>
+                {% endfor %}
+                {% for t in selling %}
+                <tr>
+                    <td><div class="container-fluid no-padding">{% include 'users/includes/selling_card.html' %}</div></td>
+                </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+        
+        
+</div>
+    {% else %}
+    <div class="container">
+            <div class="row pt-5">
+                <div class="col">
+                        
+                        <h3 class="text-center">You don't have any postings yet. Make a new one.</h3><br>
+                        <center>
+                                <a class="btn btn-primary btn-sm pt-2 pb-2 font-weight-bold" href="/new_buying_location" role="button">New Buying Posting</a>
+                                <a class="btn btn-primary btn-sm pt-2 pb-2 font-weight-bold" href="/new_selling_location" role="button">New Selling Posting</a>
+                            </center>
+                        <img class="rounded mx-auto d-block" src="{% static "users/llama.png" %}" width="50%" alt="">
+                </div>
+            </div>
+            
+        </div>
+        
+        {% endif %}
+    
+{% endblock %}
+
+<!-- <center><a class="btn btn-secondary" href="/new_opp" role="button">New Opportunity</a></center>-->

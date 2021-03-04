@@ -1,0 +1,62 @@
+version: "3"
+services:
+#    redis:
+#      image: redis:5
+#      command: redis-server /etc/redis/redis.conf 
+#      volumes:
+#        - webapp_media_vol:/data 
+#        - ./compose/redis/redis.conf:/etc/redis/redis.conf 
+#      ports:
+#        - "6379:6379"
+#      restart: always 
+# 	db:
+#      image: mysql:8.0.23
+#      environment:
+#        - MYSQL_ROOT_PASSWORD=db_psswd 
+#        - MYSQL_DATABASE=db_name
+#        - MYSQL_USER=dbuser 
+#        - MYSQL_PASSWORD=password 
+#      volumes:
+#        - webapp_media_vol:/var/lib/mysql:rw 
+#        - ./compose/mysql/conf/mysql.cnf:/etc/mysql/my.cnf 
+#        - ./compose/mysql/init:/docker-entrypoint-initdb.d/ 
+#      ports:
+#        - "3306:3306" 
+#      restart: always
+   web:
+     build: ./webapp 
+     expose:
+       - "8000"
+     volumes:
+       - ./webapp:/ListingLlama/webapp 
+       - webapp_media_vol:/ListingLlama/webapp/media 
+#      links:
+#        - db
+#        - redis
+#      depends_on: 
+#        - db
+#        - redis
+     environment:
+       - DEBUG=False
+     restart: always
+     tty: true
+     stdin_open: true
+   nginx:
+     build: ./compose/nginx
+     ports:
+       - "80:80"
+       - "443:443"
+     expose:
+       - "80"
+     volumes:
+       - ./webapp/staticfiles:/usr/share/nginx/html/static 
+       - webapp_media_vol:/usr/share/nginx/html/media 
+       - ./compose/nginx/ssl:/usr/share/nginx/ssl 
+       - ./compose/nginx/log:/var/log/nginx 
+     links:
+       - web
+     depends_on:
+       - web
+     restart: always
+volumes:
+   webapp_media_vol:

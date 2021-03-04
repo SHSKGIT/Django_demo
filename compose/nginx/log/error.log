@@ -1,0 +1,33 @@
+2021/03/02 20:50:59 [error] 22#22: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 20:51:59 [info] 22#22: *1 client 172.18.0.1 closed keepalive connection
+2021/03/02 20:53:13 [error] 22#22: *3 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 20:54:13 [info] 22#22: *3 client 172.18.0.1 closed keepalive connection
+2021/03/02 20:56:11 [error] 23#23: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 20:56:30 [error] 23#23: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 20:56:33 [error] 23#23: *1 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 20:57:11 [info] 23#23: *1 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:00:58 [error] 23#23: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:01:00 [error] 23#23: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /control/auth/user/ HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:01:01 [error] 23#23: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET /control/ HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:01:05 [error] 23#23: *5 directory index of "/usr/share/nginx/html/static/" is forbidden, client: 172.18.0.1, server: localhost, request: "GET /static/ HTTP/1.1", host: "127.0.0.1"
+2021/03/02 21:01:10 [error] 23#23: *5 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:01:12 [error] 23#23: *10 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:01:58 [info] 23#23: *5 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:02:12 [info] 23#23: *10 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:03:16 [error] 23#23: *12 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:04:01 [error] 23#23: *12 connect() failed (111: Connection refused) while connecting to upstream, client: 172.18.0.1, server: localhost, request: "GET / HTTP/1.1", upstream: "uwsgi://172.18.0.2:8000", host: "127.0.0.1"
+2021/03/02 21:04:46 [info] 23#23: *12 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:07:52 [info] 23#23: *15 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:08:39 [error] 23#23: *23 open() "/usr/share/nginx/html/static/admin/css/nav_sidebar.css" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/css/nav_sidebar.css HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/"
+2021/03/02 21:08:39 [error] 23#23: *25 open() "/usr/share/nginx/html/static/admin/js/nav_sidebar.js" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/js/nav_sidebar.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/"
+2021/03/02 21:08:52 [error] 23#23: *18 open() "/usr/share/nginx/html/static/admin/css/nav_sidebar.css" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/css/nav_sidebar.css HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/"
+2021/03/02 21:08:52 [error] 23#23: *27 open() "/usr/share/nginx/html/static/admin/js/nav_sidebar.js" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/js/nav_sidebar.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/"
+2021/03/02 21:08:58 [error] 23#23: *27 open() "/usr/share/nginx/html/static/admin/js/nav_sidebar.js" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/js/nav_sidebar.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/auth/user/"
+2021/03/02 21:08:58 [error] 23#23: *18 open() "/usr/share/nginx/html/static/admin/css/nav_sidebar.css" failed (2: No such file or directory), client: 172.18.0.1, server: localhost, request: "GET /static/admin/css/nav_sidebar.css HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/control/auth/user/"
+2021/03/02 21:09:38 [info] 23#23: *25 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:09:38 [info] 23#23: *23 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:09:51 [info] 23#23: *18 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:09:51 [info] 23#23: *27 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:09:51 [info] 23#23: *28 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:13:52 [info] 22#22: *1 client 172.18.0.1 closed keepalive connection
+2021/03/02 21:13:55 [info] 22#22: *3 client 172.18.0.1 closed keepalive connection

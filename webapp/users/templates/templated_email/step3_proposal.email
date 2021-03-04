@@ -1,0 +1,9 @@
+{% block subject %}Work together{% endblock %}
+{% block plain %}
+  Hi {{full_name}},
+
+  It's now time to work together. Please find your new clients contact info below:
+
+  
+
+{% endblock %}

@@ -1,0 +1,57 @@
+<head>
+    {% load static %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/bootstrap.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'users/custom.css' %}">
+</head>
+{% load crispy_forms_tags %}
+<body class="bg-primary">
+    {% include 'users/includes/messages.html' %}
+<div class="container-fluid bg-primary pt-5">
+    <div class="container-small">
+  <div class="row">
+    <div class="col">
+        <center><img src="{% static "users/ListingLlama-BadgeStacked.svg" %}" width="50%" alt=""></center>
+    </div>
+  </div>
+<div class="row justify-content-center row text-white">
+  <div class="col px-5">
+      {{ form.non_field_errors }}
+      <form method="POST">
+          {% csrf_token %}
+          {{ form.username|as_crispy_field }}
+          {{ form.password|as_crispy_field }}
+          <p><a class="text-white" href="{% url 'password_reset' %}">Lost password?</a></p>
+          <center><a class="text-white" href="{% url 'users:legal' %}">You agree to the Listing Llama User Agreement, Privacy Policy and Cookie Policy</a></center>
+                        <br>
+          <center><button class="btn btn-secondary btn-block font-weight-bold" type="submit">Sign in with Password</button></center>
+          <input type="hidden" name="next" value="{{ next }}" />
+      </form>
+      <!--<h4 class="text-white text-center">OR</h4>-->
+  </div>
+</div>
+<!-- TODO: Social media login -->
+
+<div class="row text-white">
+    <div class="col px-5"><center>
+    <p><a href="{% url 'social:begin' 'facebook' %}" class="btn btn-secondary btn-block font-weight-bold" role="button">Login with Facebook</a></p>
+  
+      </center>
+    </div>
+</div>
+
+
+<div class="row justify-content-center text-white">
+    <div class="col">
+      <br>
+        {# Assumes you setup the password_reset view in your URLconf #}
+        
+        <center><h4><a class="text-white" href="/register">Create a new account</a></h4></center>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+

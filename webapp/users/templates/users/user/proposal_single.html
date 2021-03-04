@@ -1,0 +1,104 @@
+{% extends 'users/header.html' %} 
+{% load static %}
+{% load auth_extras %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>PROPOSAL {{ proposal.pk }}</h3>
+    </div>
+    <div class="container-fluid">
+            <div class="parent">
+                <img class="image1" src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ img.cover }}" alt="Place Holder" width="100%">
+                <img class="image2" src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ img.profile }}" alt="Place Holder" width="20%" class="over-img">
+            </div>
+        </div>
+<div class="container-fluid bg-info">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <center>
+                        <h1 class="font-weight-bold">{{ proposal.agent.first_name}} {{ proposal.agent.last_name }}</h1>
+                        <h4>{{ proposal.agent.company }}</h4>
+                        <p><img src="{% static "users/Phone-Landline-Icon-Grey.svg"%}" width="20" alt="phone"/> {{ agent.work_phone }} <img src="{% static "users/Phone-Mobile-Icon-Grey.svg"%}" width="20" alt="phone"/>{{ agent.cell_phone }}</p>
+
+                        <h4>Status</h4>
+
+                        {% if proposal.accepted_user %}
+                        <h6>Accepted by buyer or seller!  <img src="{% static "users/success.png"%}" width="20" alt="phone"/></h6>
+                        {% else %}
+                            {% if request.user|has_group:"buyer" %} 
+                            <h3><a class="btn btn-primary" href="{% url 'users:accept_proposal' proposal.pk %}">Accept Proposal</a></h3>
+                            {% endif %}
+                        <h6>Waiting to be accepted by buyer or seller!  <img src="{% static "users/waiting.svg"%}" width="20" alt="phone"/></h6>
+                        {% endif %}
+
+                        {% if proposal.accepted_agent %}
+                        <h6>Accepted by Realtor! <img src="{% static "users/success.png"%}" width="20" alt="phone"/></h6>
+                        {% else %}
+                        <h6>Waiting to be accepted by the Realtor! <img src="{% static "users/waiting.svg"%}" width="20" alt="phone"/></h6>
+                        {% endif %}
+                        
+                        {% if proposal.accepted_user and request.user|has_group:"agent" and not proposal.accepted_agent %}
+                        <p>Buyer or seller has accepted this proposal would you like to work with them?</p>
+                        <h3><a class="btn btn-primary" href="{% url 'users:accept_proposal_agent' proposal.pk %}">Accept Proposal</a></h3>
+                        {% endif %}
+
+                        {% if proposal.accepted_user and proposal.accepted_agent %}
+                        <h4>Congragulations! You are both ready to start working together! <img src="{% static "users/success.png"%}" width="20" alt="phone"/></h4>
+                        <p>Contact info for user and realtor</p>
+                        <p>Send email button</p>
+                        {% endif %}
+                    </center>
+                </div>
+            </div>
+        </div>
+</div>
+<div class="container-fluid bg-info">
+    <div class="container">
+<div class="row pt-4 pb-2">
+            <div class="col">
+                    <h4 class="font-weight-bold text-primary">{{proposal.subject}}</h4>
+            </div>
+        </div>     
+    </div>
+</div>
+<div class="container">
+        <div class="row pt-2 pb-2">
+                <div class="col">
+                        <h6 class="text-uppercase font-weight-bold">About me:</h6>
+                        <p>{{agent.about_me}}</p>
+                    </div>
+                </div>
+            
+            <div class="row pt-2 pb-2">
+                    <div class="col">
+                            <h6 class="text-uppercase font-weight-bold">A few great reasons people love working with me:</h6>
+                            <p>{{ agent.why_work}}</p>
+                    </div>
+                </div>
+                <hr>
+ 
+    
+        <div class="row pt-2 pb-2">
+                <div class="col">
+                        <h6 class="text-uppercase font-weight-bold">Included services:</h6>
+                        {% for proposal in proposal.services.all %}
+                        <li>{{ proposal }}</li>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="row pt-2 pb-2">
+                    <div class="col">
+                            <h6 class="text-uppercase font-weight-bold">Fee Structure</h6>
+                            <p>{{proposal.fee}}</p>
+                    </div>
+                </div>
+                <div class="row pt-2 pb-2">
+                        <div class="col">
+                                <h6 class="font-weight-bold">A note from the Realtor:</h6>
+                                <p>{{proposal.note}}</p>
+                        </div>
+                    </div>
+
+</div>
+
+{% endblock %}

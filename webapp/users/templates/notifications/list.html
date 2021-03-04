@@ -1,0 +1,40 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+    <h3>MY NOTIFICATIONS</h3>
+</div>
+{% if notifications %}
+<div class="container">
+
+
+<ul class="notifications">
+  {% for notice in notifications %}
+    {% if notice.description == 'buying'  %}
+      {% include 'notifications/notice-buying.html' %}
+    {% endif %}
+    {% if notice.description == 'selling'  %}
+      {% include 'notifications/notice-selling.html' %}
+    {% endif %}
+    {% if notice.description == 'proposal'  %}
+      {% include 'notifications/notice-proposal.html' %}
+    {% endif %}
+    {% endfor %}
+</ul>
+
+
+</div>
+{% else %}
+<div class="container">
+    <div class="row pt-5">
+        <div class="col">
+                <h3 class="text-center">No notifications!</h3>
+                <img class="rounded mx-auto d-block" src="{% static "users/llama.png" %}" width="50%" alt="">
+        </div>
+    </div>
+    
+</div>
+
+{% endif %}
+{% endblock %}

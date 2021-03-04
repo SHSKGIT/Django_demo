@@ -1,0 +1,47 @@
+{% extends 'users/header.html' %} 
+{% load static %}
+{% block content %}
+
+<div class="container-fluid pt-md-3 pb-md-3 mx-auto text-center bg-primary text-white">
+        <h3>My proposals</h3>
+    </div>
+    {% if prop %}
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                {% for t in prop %}
+                <tr>
+                    <td>
+                    {% load static %}
+
+                    <div class="row">
+                        <div class="col-4">
+                            <img src="{% static "users/Posting-Picture-Placeholder.svg" %}" alt="Place Holder" class="img-fluid"></div>
+                        <div class="col">
+                            <h2><a href="{% url 'users:single_proposal' t.pk %}">Looking to Buy</a></h2>
+                            <p>{{t.buying.bedrooms}}{{t.selling.bedrooms}} Bed | {{t.buying.bathrooms}}{{t.selling.bathrooms}} Bath | {{t.buying.sq_ft}}{{t.selling.sq_ft}}</p>
+                            <p>{{t.subject}}</p>
+                                  
+                                  
+                            </div>
+                          </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        {% else %}
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col">
+                        <h3 class="text-center">No proposals! Browse listings and find your next client.</h3>
+                        <img class="rounded mx-auto d-block" src="{% static "users/llama.png" %}" width="50%" alt="">
+                </div>
+            </div>
+            
+        </div>
+        
+        {% endif %}
+{% endblock %}
+

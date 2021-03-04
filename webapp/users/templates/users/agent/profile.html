@@ -1,0 +1,95 @@
+{% extends 'users/header.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>EDIT PROFILE</h3>
+    </div>
+    <div class="container"> 
+    <div class="row">
+        <div class="col">
+                
+                {{ form.errors }}
+                {{ form.non_field_errors }}
+              
+                <form method="POST" class="post-form">{% csrf_token %}
+                        
+                      
+                        {{ form.company|as_crispy_field }}
+                        {{ form.work_phone|as_crispy_field }}
+                        {{ form.cell_phone|as_crispy_field }}
+                        {{ form.about_me|as_crispy_field }}
+                        {{ form.why_work|as_crispy_field }}
+                        <div class="form-group">
+                                        {{ form.services.label_tag }} <br>
+                                        {% for pk, choice in form.services.field.widget.choices %}
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                                
+                                            <input id="id_{{form.services.name}}_{{ forloop.counter0 }}" name="{{form.services.name}}" type="{{form.services.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                                            
+                                            <label for="id_{{form.services.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                                        </div>
+                                    
+                                        {% endfor %}
+                        </div>
+                        <div class="form-group">
+                                        {{ form.cities.label_tag }} <br>
+                                        {% for pk, choice in form.cities.field.widget.choices %}
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                                
+                                            <input id="id_{{form.cities.name}}_{{ forloop.counter0 }}" name="{{form.cities.name}}" type="{{form.cities.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                                            
+                                            <label for="id_{{form.cities.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                                        </div>
+                                    
+                                        {% endfor %}
+                        </div>
+                        <div class="form-group">
+                                        {{ form.special.label_tag }} <br>
+                                        {% for pk, choice in form.special.field.widget.choices %}
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                                
+                                            <input id="id_{{form.special.name}}_{{ forloop.counter0 }}" name="{{form.special.name}}" type="{{form.special.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                                            
+                                            <label for="id_{{form.special.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                                        </div>
+                                    
+                                        {% endfor %}
+                        </div>
+                        <div class="form-group">
+                                        {{ form.languages.label_tag }} <br>
+                                        {% for pk, choice in form.languages.field.widget.choices %}
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                                
+                                            <input id="id_{{form.languages.name}}_{{ forloop.counter0 }}" name="{{form.languages.name}}" type="{{form.languages.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                                            
+                                            <label for="id_{{form.languages.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                                        </div>
+                                    
+                                        {% endfor %}
+                        </div>
+                        <div class="form-group">
+                                        {{ form.building_types.label_tag }} <br>
+                                        {% for pk, choice in form.building_types.field.widget.choices %}
+                                        
+                                        <div class="custom-control custom-checkbox">
+                                                
+                                            <input id="id_{{form.building_types.name}}_{{ forloop.counter0 }}" name="{{form.building_types.name}}" type="{{form.building_types.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                                            
+                                            <label for="id_{{form.building_types.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                                        </div>
+                                    
+                                        {% endfor %}
+                        </div>
+                        {{ form.website|as_crispy_field }}
+                    <button type="submit" class="btn btn-default">Save</button>
+                </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

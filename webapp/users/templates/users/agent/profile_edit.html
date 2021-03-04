@@ -1,0 +1,72 @@
+{% extends 'users/header.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>EDIT PROFILE</h3>
+    </div>
+    <div class="container pt-2"> 
+    <div class="row">
+        <div class="col">
+                <!-- TODO: ADD IN STATUS OF SUBSCRIPTION-->
+                
+                {% if status.subscription_id == '' or status.subscription_id == None %}
+                    <center><h1>Please subscribe below!</h1></center>
+                {% endif %}
+                {% if status.about_me == None or status.company ==  None %}
+                    <center><h1>Users will not see your profile right now!</h1>
+                    <p>Please update your profile. "Provide a short bio about yourself" and "What is the name of the agency you work with?" must be filled to show up in the browse realtor section. Thanks!</p></center>
+                {% endif %}
+                <div class="row pt-2">
+                    
+                    <div class="col">
+                            <center>
+                            <img src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ profile_img.profile }}" alt="Place Holder" class="img-fluid img-posting" width="20%"><br><br><br>
+                            <a class="btn btn-primary" href="/upload_picture" role="button">Change Profile Picture</a>
+                        </center>
+                    </div>
+                
+                    <div class="col">
+                            <center>
+                            <img src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ profile_img.cover }}" alt="Place Holder" class="img-fluid img-posting" width="30%"><br><br><br>
+                            <a class="btn btn-primary" href="/upload_picture" role="button">Change Cover Photo</a>
+                        </center>
+                    </div>
+                
+                </div>
+                <div class="pt-5">
+                    {% if status.subscription_id == '' or status.subscription_id == None %}
+                        <p><a class="btn btn-primary" href="/promo" role="button">Subscribe</a></p>
+                    {% else %}
+                        <p><a class="btn btn-primary" href="/cancel_sub" role="button">Cancel Subscription</a></p>
+                    {% endif %}
+                </div>
+                
+                
+                {{ form.errors }}
+                {{ form.non_field_errors }}
+                {{ form2.errors }}
+                {{ form2.non_field_errors }}
+                <form method="POST" class="post-form">{% csrf_token %}
+                        
+                        {{ form2.email|as_crispy_field }}
+                        {{ form2.first_name|as_crispy_field }}
+                        {{ form2.last_name|as_crispy_field }}
+                        {{ form.company|as_crispy_field }}
+                        {{ form.work_phone|as_crispy_field }}
+                        {{ form.cell_phone|as_crispy_field }}
+                        {{ form.about_me|as_crispy_field }}
+                        {{ form.why_work|as_crispy_field }}
+                        {{ form.cities|as_crispy_field }}
+                        {{ form.special|as_crispy_field }}
+                        {{ form.languages|as_crispy_field }}
+                        {{ form.building_types|as_crispy_field }}
+                        {{ form.website|as_crispy_field }}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}

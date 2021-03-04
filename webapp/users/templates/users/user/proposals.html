@@ -1,0 +1,70 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %} 
+                            
+
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>MY PROPOSALS</h3>
+    </div>
+    {% if buy or sell %}
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                {% for t in buy %}
+                <tr>
+                    <td>
+                    {% load static %}
+
+                    <div class="row">
+                        <div class="col-3 px-1">
+                          <img src="{% static "users/Posting-Picture-Placeholder.svg" %}" alt="Place Holder" class="img-fluid">
+                        </div>
+                        <div class="col pt-2">
+                            <p><a href="{% url 'users:single_proposal' t.pk %}">Looking to Buy</a><br>
+                            Custom user title<br>
+                            {{t.buying.bedrooms}}{{t.selling.bedrooms}} Bed | {{t.buying.bathrooms}}{{t.selling.bathrooms}} Bath | {{t.buying.sq_ft}}{{t.selling.sq_ft}}<br>
+                            {{t.subject}}</p>
+                                  
+                                  
+                            </div>
+                          </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for t in sell %}
+                <tr>
+                    <td>
+
+                        <div class="row">
+                            <div class="col-3 px-1">
+                              <img src="{% static "users/Posting-Picture-Placeholder.svg" %}" alt="Place Holder" class="img-fluid">
+                            </div>
+                            <div class="col pt-2">
+                            <p><a href="{% url 'users:single_proposal' t.pk %}">Looking to Sell</a><br>
+                            Custom user title<br>
+                            {{t.buying.bedrooms}}{{t.selling.bedrooms}} Bed | {{t.buying.bathrooms}}{{t.selling.bathrooms}} Bath | {{t.buying.sq_ft}}{{t.selling.sq_ft}}<br>
+                            {{t.subject}}</p>
+                                  
+                                  
+                            </div>
+                          </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col">
+                        <h3 class="text-center">No proposals! Browse realtors now!</h3>
+                        <center><a class="btn btn-primary" href="/realtors" role="button">Browse Realtors</a></center>
+                        <img class="rounded mx-auto d-block" src="{% static "users/llama.png" %}" width="50%" alt="">
+                </div>
+            </div>
+            
+        </div>
+        
+        {% endif %}
+{% endblock %}

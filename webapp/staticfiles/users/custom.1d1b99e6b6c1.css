@@ -1,0 +1,48 @@
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image2 {
+  position: absolute;
+  top: 20%;
+  left: 40%;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 20%
+}
+
+.cover {
+  width: 100%;
+  max-height: 35%;
+  overflow: hidden;
+}
+
+.cover > img {
+  width: 100%;
+  position: relative;
+}
+
+.dropdown-menu{
+  padding-right: 20;
+  padding-left: 20;
+}
+
+.nowrap {
+  white-space: nowrap ;
+}
+
+@media only screen and (max-width: 600px) {
+
+}
+
+.container-small {
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 500px; /* or 950px */
+}

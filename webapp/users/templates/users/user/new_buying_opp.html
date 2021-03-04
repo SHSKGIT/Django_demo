@@ -1,0 +1,128 @@
+
+{% extends 'users/header.html' %}
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+{% block content %}
+
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+    <h3>NEW POSTINGS</h3>
+</div>
+<div class="container">
+
+<form id="regForm" method="POST">
+
+        {{ form.errors }}
+                {{ form.non_field_errors }}
+        
+        <!-- One "tab" for each step in the form: -->
+ 
+        <div class="tab"><!-- 1 -->
+            <div class="form">
+                {% csrf_token %}
+                
+                {{ form.bedrooms|as_crispy_field }}
+                {{ form.bathrooms|as_crispy_field }}
+            </div>
+            
+        </div>
+        
+        <div class="tab"><!-- 2 -->
+            {{ form.budget|as_crispy_field }}
+        </div>
+
+        <div class="tab"><!-- 3 -->
+            {{ form.sq_ft|as_crispy_field }}
+                
+        </div>
+        <div class="tab"><!-- 4 -->
+            {{ form.looking_for|as_crispy_field }}
+        </div>
+        <div class="tab"><!-- 5 -->
+            <div class="form-group">
+                {{ form.features.label_tag }} <br>
+                {% for pk, choice in form.features.field.widget.choices %}
+                
+                <div class="custom-control custom-checkbox">
+                        
+                    <input id="id_{{form.features.name}}_{{ forloop.counter0 }}" name="{{form.features.name}}" type="{{form.features.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                    
+                    <label for="id_{{form.features.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                </div>
+            
+                {% endfor %}
+            </div>
+        
+                
+        </div>
+        <div class="tab"><!-- 6 -->
+            {{ form.notes_to_agent|as_crispy_field }}
+        </div>
+        <div class="tab"><!-- 7 -->
+                {{ form.notes_about|as_crispy_field }}
+                
+            </div>
+        <div class="tab"><!-- 8 -->
+            <div class="form-group">
+                {{ form.condition.label_tag }} <br>
+                {% for pk, choice in form.condition.field.widget.choices %}
+                <div class="custom-control custom-checkbox">
+                    <input id="id_{{form.condition.name}}_{{ forloop.counter0 }}" name="{{form.condition.name}}" type="{{form.condition.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                    
+                    <label for="id_{{form.condition.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                </div>
+                {% endfor %}
+                </div>
+        </div>
+
+        <div class="tab"><!-- 9 -->
+            <h3>Share Some Insights To Help Realtors Connect with Your Unique Needs.</h3>
+            <p>The more details you can share, the faster you will get to the property you really want!</p>
+            {{ form.insite1|as_crispy_field }}
+            {{ form.insite2|as_crispy_field }}
+            {{ form.insite3|as_crispy_field }}
+            {{ form.insite4|as_crispy_field }}
+        </div>
+
+        <div class="tab"><!-- 10 -->
+            {{ form.urgency|as_crispy_field }}
+        </div>
+        <div class="tab"><!-- 11 -->
+                <div class="form-group">
+                    {{ form.realtorqualities.label_tag }} <br>
+                    {% for pk, choice in form.realtorqualities.field.widget.choices %}
+                    <div class="custom-control custom-checkbox">
+                        <input id="id_{{form.realtorqualities.name}}_{{ forloop.counter0 }}" name="{{form.realtorqualities.name}}" type="{{form.realtorqualities.field.widget.input_type}}" value="{{pk}}" class="custom-control-input">
+                        
+                        <label for="id_{{form.realtorqualities.name}}_{{ forloop.counter0 }}" class="custom-control-label">{{ choice }}</label>
+                    </div>
+                    {% endfor %}
+                    </div>
+                
+            </div>
+        
+        <div style="overflow:auto;">
+          <center>
+            <button type="button" class="btn btn-primary" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" class="btn btn-primary" id="nextBtn" onclick="nextPrev(1)">Next</button>
+        </center>
+        </div>
+        
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+        </div>
+        
+        </form>
+</div>
+
+{% endblock %}

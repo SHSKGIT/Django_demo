@@ -1,0 +1,34 @@
+<head>
+    {% load static %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/bootstrap.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'users/custom.css' %}">
+</head>
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+<body class="bg-primary">
+    {% include 'users/includes/messages.html' %}
+<div class="container-fluid bg-primary pt-5">
+    <div class="container-small">
+  <div class="row">
+    <div class="col">
+        <center><img src="{% static "users/ListingLlama-BadgeStacked.svg" %}" width="50%" alt=""></center>
+    </div>
+  </div>
+<div class="row justify-content-center row text-white">
+  <div class="col px-5 pt-5">
+<center><h2>Account creation successful!</h2>
+ <p>Sign up to receive your 14 day free trial, after that our membership is just $149/month. It is a contract-free, month-to-month commitment that’ll provide you with endless new business opportunities.</p> 
+<form method="post">
+  {% csrf_token %}
+  {{ form|crispy }}
+  {{ form.non_field_errors }}
+  <center><button class="btn btn-secondary btn-block" type="submit">Enter</button></center>
+</form>
+<p><a href="{% url 'users:charge' %}" class="btn btn-secondary btn-block font-weight-bold" role="button">No Promo Code</a></p>
+</center>
+</div>
+</div>
+</body>

@@ -1,0 +1,7 @@
+{% block subject %}Accepted proposal!{% endblock %}
+{% block plain %}
+  Hi {{full_name}},
+
+  You have an accepted proposal! Please log into ListingLlama to view.
+
+{% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>BROWSE REALTORS</h3>
+    </div>
+<div class="container-fluid bg-secondary">
+    <div class="parent">
+            <div class="profile-header-container ">   
+        <!--<div class="cover">
+        
+        <img src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ img.cover }}" alt="Place Holder">
+    </div>-->
+    <div class="profile-header-img">
+        <img class="img-circle" src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ img.profile }}" alt="Place Holder">
+    </div>
+    </div>
+    </div>
+</div>
+<div class="container-fluid bg-info">
+        <div class="container">
+    <div class="row">
+        <div class="col">
+            <center>
+                <h1 class="font-weight-bold">{{realtor.first_name}} {{ realtor.last_name }}</h1>
+                <h4>{{ profile.company }}</h4>
+                <p><img src="{% static "users/Phone-Landline-Icon-Grey.svg"%}" width="20" alt="phone"/> {{ profile.work_phone }} <img src="{% static "users/Phone-Mobile-Icon-Grey.svg"%}" width="20" alt="phone"/>{{ profile.cell_phone }}</p>
+            </center>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="container">
+        <div class="row pt-2 pb-2">
+                <div class="col">
+                        <h6 class="text-uppercase font-weight-bold">About me:</h6>
+                        <p>{{profile.about_me}}</p>
+                    </div>
+                </div>
+                <div class="row pt-2 pb-2">
+                        <div class="col">
+                                <h6 class="text-uppercase font-weight-bold">A few great reasons people love working with me:</h6>
+                                <p>{{ profile.why_work}}</p>
+                        </div>
+                    </div>
+                    <hr>
+    <div class="row">
+        <div class="col">
+            <h3>Additional Information</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+                <h6>Services:</h6>
+                <p>{% for profile in profile.services.all %}<li>{{ profile }}</li>{% endfor %}</p>
+                         
+             </div>
+                <div class="col">
+                <h6>Areas:</h6>
+                <p>{% for profile in profile.cities.all %}<li>{{ profile }}</li>{% endfor %}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+  
+               <h6>Specializations</h6>
+                <p>{% for profile in profile.special.all %}<li>{{ profile }}</li>{% endfor %}</p>
+                        
+                </div>
+                <div class="col">
+                <h6>Languages</h6>
+                  <p>     
+                {% for profile in profile.languages.all %}<li>{{ profile }}</li>{% endfor %}
+            </p>       
+                        </div>
+                </div>
+            
+            <div class="row">
+                <div class="col">
+                <h6>Types</h6>
+                    <p>   
+                {% for profile in profile.building_types.all %}<li>{{ profile }}</li>{% endfor %}     
+            </p>   
+                </div>
+                <div class="col">
+                <h6>Website</h6>
+                <p>
+                {{ profile.website }}
+            </p>  
+                </div>
+            </div>
+
+    <div class="row pb-2" style="height:70px;">
+        <div class="col py-0" style="height:100%">
+            <a href="{% url 'users:realtor_find_back' %}" class="btn btn-secondary btn-lg btn-block d-flex align-items-center" style="display: block; width: 100%; height:100%" role="button">< Back</a>
+        </div>
+        <div class="col px-0" style="height:100%">
+            <a href="#" class="btn btn-primary btn-lg btn-block d-flex align-items-center" style="display: block; width: 100%; height:100%" role="button">Request Proposal</a>
+        </div>
+        <div class="col" style="height:100%">
+                <a href="{% url 'users:realtor_find_next' realtor.pk %}" class="btn btn-primary btn-lg btn-block d-flex align-items-center" style="display: block; width: 100%; height:100%; " role="button">Next ></a>
+            </div>
+    </div>
+</div>
+ 
+{% endblock %}

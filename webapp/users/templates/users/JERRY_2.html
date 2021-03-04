@@ -1,0 +1,10 @@
+{% if latest_location_list %}
+    <ul>
+    {% for location in latest_location_list %}
+<!--        <li><a href="/jerry/{{ location.name }}/">{{ location.name }}</a></li>-->
+        <li><a href="{% url 'users:jerry_1' location.name location.id %}">{{ location.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

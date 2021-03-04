@@ -1,0 +1,24 @@
+{% extends 'users/header.html' %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>NEWS FEED</h3>
+    </div>
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col">
+                
+            {% for i in blog %}
+            <div class="card mb-3">
+                 <img class="card-img-top" src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ i.image }}" alt="Card image cap">
+             <div class="card-body">
+                <h5 class="card-title">{{ i.title }}</h5>
+                    <p class="card-text">{{ i.post|safe }}</p>
+                     <p class="card-text"><small class="text-muted"></small></p>
+                </div>
+             </div>
+             {% endfor %}
+                         
+            </div>
+        </div>
+    </div>
+{% endblock %}

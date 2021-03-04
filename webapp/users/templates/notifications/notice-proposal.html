@@ -1,0 +1,27 @@
+
+<div class="alert alert-block alert-{{ notice.level }}">
+        <a class="close pull-right" href="{% url 'notifications:mark_as_read' notice.slug %}">
+          <i class="icon-close">X</i>
+        </a>
+        <h4>
+          <i class="icon-mail{% if notice.unread %}-alt{% endif %}"></i>
+          {{ notice.actor }} 
+          {{ notice.verb }}
+          {% if notice.target %}s
+            of {{ notice.target }}
+          {% endif %}
+        </h4>
+        
+        <p>{{ notice.timesince }} ago</p>
+        <p>{{ notice.action_object.subject }}</p>
+        <a href="{% url 'users:single_proposal' notice.action_object.pk %}">View Proposal</a>
+        
+        
+        <div class="notice-actions">
+          {% for action in notice.data.actions %}
+            <a class="btn" href="{{ action.href }}">{{ action.title }}</a>
+          {% endfor %}
+        </div>
+      </div>
+
+

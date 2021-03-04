@@ -1,0 +1,56 @@
+<head>
+    {% load static %}
+    <meta charset="utf-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="{% static 'users/bootstrap.css' %}">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{% static 'users/custom.css' %}">
+</head>
+{% load crispy_forms_tags %}
+{% load crispy_forms_field %}
+<body class="bg-primary">
+    {% include 'users/includes/messages.html' %}
+<div class="container-fluid bg-primary pt-5">
+    <div class="container-small">
+  <div class="row">
+    <div class="col">
+        <center><img src="{% static "users/ListingLlama-BadgeStacked.svg" %}" width="50%" alt=""></center>
+    </div>
+  </div>
+<div class="row justify-content-center row text-white">
+  <div class="col px-5 pt-5">
+<center><h2>Account creation successful!</h2></center>
+<center><h3>Your free trial will begin today, <br>
+  You won’t be charged until your trial is over.<br>
+  Cancel anytime!</h3></center>
+  <p class="px-5">
+      
+      What you’ll receive:<br>
+      
+      $149/mnth - Monthly Online Membership includes:<br>
+       - Instant Access to New Committed Clients<br>
+       - Tools to x100 Your Productivity<br>
+      
+      Access to blogs, webinars and world-class coaching<br>
+      
+      On-going tools to help you win and keep new business</p>
+      <center><form action="{% url 'users:charge' %}" method="post">
+  {% csrf_token %}
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="{{ key }}"
+          data-description="Realtor Subscription"
+          data-amount="0"
+          data-locale="auto"
+          data-panel-label='Start trial'>
+          </script>
+          <script>
+              // Hide default stripe button, be careful there if you
+              // have more than 1 button of that class
+              document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+          </script>
+          <button type="submit" class="btn btn-secondary btn-block font-weight-bold">Start Trial!</button>
+</form>
+</center>
+</div>
+</div>
+</body>

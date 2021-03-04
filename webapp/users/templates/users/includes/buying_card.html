@@ -1,0 +1,22 @@
+{% load static %}
+
+                    <div class="row">
+                      <div class="col-3 px-1">
+                          <img src="{% static "users/Posting-Picture-Placeholder.svg" %}" alt="Place Holder" class="img-fluid">
+                        </div>
+                      <div class="col pt-2">
+                        <p><a href="{% url 'users:buy_posting_view' t.pk %}">Looking to Buy</a><br>
+                          Custom user title<br>
+                        {{t.bedrooms}} Bed | {{t.bathrooms}} Bath | {{t.sq_ft}}<br>
+                        
+                        {% if t.location.neighborhood %}{{t.location.neighborhood}},{%else%} {% endif %} 
+                          
+                          
+                        {{t.location.city}}, 
+                        {{t.location.province}}</p>
+                          
+                          
+                    </div>
+                  </div>
+
+

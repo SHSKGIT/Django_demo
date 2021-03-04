@@ -1,0 +1,58 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid pt-3 pb-3 mx-auto text-center bg-primary text-white">
+        <h3>Postings</h3>
+    </div>
+    {% if buying or selling %}
+    <div class="container">
+        <table class="table table-striped">
+            <tbody>
+                {% for t in buying %}
+                <tr>
+                    <td>
+                    <div class="container-fluid no-padding">
+                        {% include 'users/includes/buying_card.html' %}
+                        <div class="row">
+                            <div class="col">
+                            
+                            </div>
+                        </div>
+                    </div>
+                            
+                    </td>
+
+                </tr>
+                {% endfor %}
+                {% for t in selling %}
+                <tr>
+                    <td>
+                    <div class="container-fluid no-padding">
+                        {% include 'users/includes/selling_card.html' %}
+                        <div class="row">
+                            <div class="col">
+    
+                        </div>
+                    </div>
+                            
+                    </td>
+
+                </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+        </div>
+        {% else %}
+        <div class="container">
+            <div class="row pt-5">
+                <div class="col">
+                        <h3 class="text-center">No new postings check back soon</h3>
+                        <img class="rounded mx-auto d-block" src="{% static "users/llama.png" %}" width="50%" alt="">
+                </div>
+            </div>
+            
+        </div>
+        
+        {% endif %}
+{% endblock %}

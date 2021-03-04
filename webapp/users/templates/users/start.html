@@ -1,0 +1,40 @@
+<head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" type="text/css" href="{% static 'users/bootstrap.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" type="text/css" href="{% static 'users/custom.css' %}">
+    </head>
+    <body class="bg-primary">
+        {% include 'users/includes/messages.html' %}
+    <div class="container-fluid bg-primary pt-5">
+        <div class="container-small">
+      <div class="row">
+        <div class="col">
+            <center><img src="{% static "users/ListingLlama-BadgeStacked.svg" %}" width="50%" alt=""></center>
+        </div>
+      </div>
+    <div class="row justify-content-center text-white pt-5">
+      <div class="col px-5">
+            <a href="/register" class="btn btn-secondary btn-block font-weight-bold" role="button">Join with Email</a>
+           
+            <br>
+          <h4 class="text-white text-center">OR</h4>
+          <br>
+      </div>
+    </div>
+    <!-- TODO: Social Login -->
+      <a href="{% url 'social:begin' 'facebook' %}?user_type=buyer" class="btn btn-secondary btn-block font-weight-bold" role="button">Join with Facebook as Buyer/Seller</a>
+        <a href="{% url 'social:begin' 'facebook' %}?user_type=agent" class="btn btn-secondary btn-block font-weight-bold" role="button">Join with Facebook as Realtor</a>
+    <div class="row justify-content-center text-white">
+        <div class="col">
+          <br>
+            {# Assumes you setup the password_reset view in your URLconf #}
+            {# <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
+            <center><h4><a class="text-white" href="{% url 'users:login' %}">Already a member? Login</a></h4></center>
+        </div>
+      </div>
+    </div>
+</div>
+    </body>

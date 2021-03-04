@@ -1,0 +1,226 @@
+{% extends 'users/header.html' %}
+{% load static %}
+{% block content %}
+{% load auth_extras %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>POSTING {{ posting.pk }}</h3> 
+    </div>
+<div class="container-fluid bg-info">
+<div class="container">
+    <div class="row">
+        <div class="col">
+                {% if request.user|has_group:"buyer" %} 
+                <a class="btn btn-default float-right" href="{% url 'users:post_edit_buy' posting.pk %}"><img src="{% static "users/Edit-Icon-Grey.svg" %}" alt="Place Holder" width="40px"></span></a>
+                {% endif %}
+        </div>
+    </div>
+        {% if image %}
+        <div class="row">
+        <div class="col">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                    {% for o in images %}
+                        {% if forloop.counter == 1%}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        {% else %}
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        {% endif %}
+                    {% endfor %}
+                        
+                    </ol>
+                    <div class="carousel-inner">
+                    {% for o in image %}
+                    {% if forloop.counter == 1%}
+                        <div class="carousel-item active">
+                    {% else %}
+                        <div class="carousel-item">
+                    {% endif %}
+                            <img class="d-block w-100" src="https://listingllama-assets.s3-us-west-2.amazonaws.com/{{ o.image }}" alt="First slide" width="50%">
+                          </div>
+                    {% endfor %}
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="sr-only">Next</span>
+                        </a>
+                      </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+            <div class="row pt-5 pb-5">
+            <div class="col">
+                {% if request.user|has_group:"buyer" %} 
+                <center><a class="btn btn-primary" href="{% url 'users:add_images_buy' posting.pk %}" role="button">Add Image</a></center>
+                {% endif %}
+            </div>
+            </div>
+        {% endif %}
+    
+
+    <div class="row pt-3">
+        <div class="col">
+                
+            <p class="font-weight-bold">Interested in buying:</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h4 class="font-weight-bold">{{ posting.bedrooms }}
+            <img src="{% static "users/Bedrooms-Icon.svg" %}" alt="Place Holder" width="40px"></h4>
+        </div>
+        <div class="col">
+                <h4 class="font-weight-bold">{{ posting.bathrooms }} 
+                <img src="{% static "users/Bathrooms-Icon.svg" %}" alt="Place Holder" width="40px"></h4>
+        </div>
+        <div class="col">
+            <p class="font-weight-bold">{{ posting.sq_ft }}</p>
+            </div>
+    </div>
+    <div class="row pt-2 pb-2">
+            <div class="col">
+                    <h6 class="font-weight-bold">The timeframe I am looking to buy in is:</h6>
+                    {% if posting.urgency == 1 %}
+                    <h4 class=" text-primary">Immediately</h4>
+                    {% elif posting.urgency == 2 %}
+                    <h4 class=" text-primary">Medium</h4>
+                    {% elif posting.urgency == 3 %}
+                    <h4 class=" text-primary">Willing to wait</h4>
+                    {% endif %}
+            </div>
+        </div>     
+    
+    <div class="row pt-2 pb-2">
+        <div class="col">
+            <h6 class="font-weight-bold">The city I would like to search in is:</h6>
+            <h4 class="text-primary"><img src="{% static "users/map-marker.svg" %}" alt="Place Holder" width="30px"> {{ posting.location.city }} , {{posting.location.province}}</h4>
+        </div>
+    </div>
+    </div>
+</div>
+<div class="container">
+    <!--
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The neighborhood's I am interested in are:</h6>
+                <span class="badge badge-pill badge-info text-dark">Primary</span>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The kind of area I would like is/has:</h6>
+                <span class="badge badge-pill badge-info text-dark">Primary</span>
+        </div>
+    </div>
+    -->
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">My price range is:</h6>
+                <!--<div class="alert alert-dark" role="alert">TODO</div>-->
+                <h4 class="font-weight-bold text-primary">{{posting.budget}}</h4>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">Some things I'm looking for in my new home:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">{{ posting.looking_for }}</div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-primary text-white">
+    <div class="container">
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">Some features I am looking for in my new home:</h6>
+                {% for o in posting.features.all %}
+                <span class="badge badge-pill badge-secondary">{{ o.description }}</span>
+                {% endfor %}
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+            <div class="col">
+                    <h6 class="font-weight-bold">To help a potential Realtor get a feel for my personality, motivations and inspirations for the move/purchase, my notes to the Realtor:</h6>
+                    <div class="alert alert-light" role="alert">{{ posting.notes_to_agent }}</div>
+            </div>
+        </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The type of home I am looking for is:</h6>
+                <div class="alert alert-light" role="alert">{{ posting.notes_about }}</div>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The condition of the home I'm looking for is:</h6>
+                {% for o in posting.condition.all %}
+                <span class="badge badge-pill badge-secondary">{{ o.description }}</span>
+                {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+<div class="container">
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">Some insights to help Realtors connect with my unique needs:</h6>
+                <hr>
+                <h6 class="font-weight-bold">The specific neighborhoods or neighborhood types that I like are:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">{{ posting.insite1}}</div>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">Special interests I have the may dictate the are or lifestyle I am pursuing are:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">{{ posting.insite2 }}</div>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">Special requests I have as a parent or pet owner are:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">{{ posting.insite3 }}</div>
+        </div>
+    </div>
+</div>
+    <div class="container-fluid bg-secondary text-white">
+        <div class="container">
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The reasons for my move are:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">{{posting.insite4}}</div>
+        </div>
+    </div>
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">A specific dream scenario of what I would ideally want in a property is:</h6>
+                <div class="alert alert-light border border-secondary" role="alert">Field added in next update</div>
+        </div>
+    </div>
+
+    <div class="row pt-3 pb-2">
+        <div class="col">
+                <h6 class="font-weight-bold">The most important qualities my Realtor must have are:</h6>
+                {% for o in posting.realtorqualities.all %}
+                    <span class="badge badge-pill badge-primary">{{ o.description }}</span>
+                {% endfor %}
+        </div>
+    </div>
+    {% if request.user|has_group:"agent" %} 
+    <div class="row">
+        <div class="col">
+                <form method="POST" action= {% url 'users:new_proposal_buying' %}>
+                        <input type="hidden" name="opp_id" value="{{posting.id}}" />
+                            {% csrf_token %} 
+                            <a class="btn btn-primary" href="/opportunities" role="button">View other postings</a>
+                            <button class="btn btn-primary" type="submit">Make a Proposal</button>
+                </form>
+        </div>
+    </div>
+    {% endif %}
+</div>    
+</div>
+
+{% endblock %}

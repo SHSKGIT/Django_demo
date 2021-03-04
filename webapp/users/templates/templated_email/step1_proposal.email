@@ -1,0 +1,7 @@
+{% block subject %}New Proposal!{% endblock %}
+{% block plain %}
+  Hi {{full_name}},
+
+  You have a new proposal! Please log into ListingLlama to view.
+
+{% endblock %}

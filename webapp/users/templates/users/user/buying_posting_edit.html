@@ -1,0 +1,34 @@
+{% extends 'users/header.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid pt-2 pb-2 mx-auto text-center bg-primary text-white">
+        <h3>EDIT POSTING</h3>
+    </div>
+    <div class="container pt-2">
+    <div class="row">
+        <div class="col">
+                {{ form.errors }}
+                {{ form.non_field_errors }}
+                <center><a class="btn btn-primary" href="{% url 'users:add_images_buy' posting.pk %}" role="button">Add Image</a></center>
+                <form method="POST" class="post-form">{% csrf_token %}
+                        {{ form.bedrooms|as_crispy_field }}
+                        {{ form.bathrooms|as_crispy_field }}
+                        {{ form.sq_ft|as_crispy_field }}
+                        {{ form.urgency|as_crispy_field }}
+                        {{ form.budget|as_crispy_field }}
+                        {{ form.looking_for|as_crispy_field }}
+                        {{ form.notes_about|as_crispy_field }}
+                        {{ form.notes_to_agent|as_crispy_field }}
+                        {{ form.condition|as_crispy_field }}
+                        {{ form.insite1|as_crispy_field }}
+                        {{ form.insite2|as_crispy_field }}
+                        {{ form.insite3|as_crispy_field }}
+                        {{ form.insite4|as_crispy_field }}
+                        {{ form.realtorqualities|as_crispy_field }}
+                    <button type="submit" class="btn btn-default">Save</button>
+                </form>
+        </div>
+    </div>
+</div>
+    
+{% endblock %}
